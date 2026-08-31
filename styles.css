@@ -116,6 +116,11 @@ button:active { transform: scale(0.95); }
   margin-bottom: 20px;
   letter-spacing: 1px;
   font-family: amorlate;
+
+
+  font-family: 'Great Vibes', cursive; /* O 'Dancing Script' */
+  font-size: 2.2rem; /* Las cursivas requieren un font-size mayor en móvil */
+
 }
 
 .fecha-subtitulo {
@@ -210,6 +215,21 @@ button:active { transform: scale(0.95); }
   font-size: 1.1rem;
   text-align: center;
   color:#1d3557;
+}
+
+/* Asegura que el texto y botones destaquen sobre fondos oscuros */
+.btn-primary, #btn-celebrate {
+  background: linear-gradient(135deg, #a78bfa, #c084fc); /* Tonos lila/rosa más brillantes */
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* Le da contraste a la letra */
+  box-shadow: 0 4px 15px rgba(167, 139, 250, 0.5); /* Resplandor visible */
+}
+
+/* En el contenedor o fondo principal */
+body {
+  background-color: #1a0b2e; /* Un fondo morado profundo pero claro en contraste */
+  color: #f3e8ff; /* Texto claro muy legible */
 }
 
 @keyframes fadeIn {
