@@ -1,61 +1,80 @@
-// Mostrar contenido principal
-document.getElementById('btn-start').addEventListener('click', () => {
+// ==========================================
+// 1. INICIALIZACIÓN Y MÚSICA DE FONDO
+// ==========================================
+const btnStart = document.getElementById('btn-start');
+const musica = document.getElementById('musicaFondo');
+
+btnStart.addEventListener('click', () => {
+  // Ocultar pantalla inicial y mostrar contenido principal
   document.getElementById('welcome-screen').classList.add('hidden');
   document.getElementById('main-content').classList.remove('hidden');
+
+  // Reproducir canción desde el segundo 8
+  musica.currentTime = 8;
+  musica.play().catch(error => {
+    console.log("Error al reproducir el audio:", error);
+  });
 });
 
-// Lógica del carrusel
+// ==========================================
+// 2. LÓGICA DEL CARRUSEL (SIN REBOBINADO)
+// ==========================================
 const track = document.getElementById('track');
 const slides = Array.from(track.children);
 const nextBtn = document.getElementById('nextBtn');
 const prevBtn = document.getElementById('prevBtn');
 let currentIndex = 0;
 
-// música
-const musica = document.getElementById('musicaFondo');
-const btnStart = document.getElementById('btn-start');
-
-
-function updateCarousel() {
+function updateCarousel(animated = true) {
+  if (animated) {
+    track.style.transition = 'transform 0.4s ease-in-out';
+  } else {
+    track.style.transition = 'none'; // Desactiva la animación para saltar sin rebobinado
+  }
   track.style.transform = `translateX(-${currentIndex * 100}%)`;
 }
 
-btnStart.addEventListener('click', () => {
-  // 1. Ocultar pantalla inicial y mostrar contenido
-  document.getElementById('welcome-screen').classList.add('hidden');
-  document.getElementById('main-content').classList.remove('hidden');
-
-  musica.currentTime = 8;
-
-  // 2. Reproducir la canción al hacer clic
-  musica.play().catch(error => {
-    console.log("Error al reproducir el audio:", error);
-  });
-});
-
 nextBtn.addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % slides.length;
-  updateCarousel();
+  if (currentIndex < slides.length - 1) {
+    currentIndex++;
+    updateCarousel(true);
+  } else {
+    // Si llega al final, salta al inicio al instante sin animación
+    currentIndex = 0;
+    updateCarousel(false);
+    void track.offsetWidth; // Fuerza al navegador a procesar el salto
+  }
 });
 
 prevBtn.addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-  updateCarousel();
+  if (currentIndex > 0) {
+    currentIndex--;
+    updateCarousel(true);
+  } else {
+    // Si retrocede desde la primera, salta directo a la última sin animación
+    currentIndex = slides.length - 1;
+    updateCarousel(false);
+    void track.offsetWidth;
+  }
 });
 
-// Lógica para abrir el sobre
+// ==========================================
+// 3. APERTURA DE CARTA
+// ==========================================
 document.getElementById('btn-open-envelope').addEventListener('click', function() {
   this.classList.add('hidden');
   document.getElementById('letter').classList.remove('hidden');
 });
 
-// Lógica de fuegos artificiales/confeti con corazones
+// ==========================================
+// 4. EFECTO DE CONFETI Y CORAZONES
+// ==========================================
 document.getElementById('btn-celebrate').addEventListener('click', () => {
   const duration = 3 * 1000;
   const end = Date.now() + duration;
 
   (function frame() {
-    // Confeti estándar
+    // Confeti lateral
     confetti({
       particleCount: 5,
       angle: 60,
@@ -86,25 +105,26 @@ document.getElementById('btn-celebrate').addEventListener('click', () => {
   })();
 });
 
-// Función para activar la aparición al hacer scroll
+// ==========================================
+// 5. APARICIÓN DE LA FOTO FINAL AL HACER SCROLL
+// ==========================================
 const fotoFinal = document.querySelector('.final-photo');
 
 const cargarFoto = (entradas, observador) => {
   entradas.forEach((entrada) => {
     if (entrada.isIntersecting) {
-      // Si la foto es visible en la pantalla
       entrada.target.classList.add('aparecer');
-      observador.unobserve(entrada.target); // Deja de observar una vez que aparece
+      observador.unobserve(entrada.target);
     }
   });
 };
 
-// Crear el observador
 const observador = new IntersectionObserver(cargarFoto, {
-  root: null, // Relativo a la pantalla (viewport)
-  rootMargin: '0px 0px -50px 0px', // Se activa 50px antes de que la foto aparezca completamente
-  threshold: 0.5 // Se activa cuando el 50% de la foto es visible
+  root: null,
+  rootMargin: '0px 0px -50px 0px',
+  threshold: 0.5
 });
 
-// Empezar a observar la foto final
-observador.observe(fotoFinal);
+if (fotoFinal) {
+  observador.observe(fotoFinal);
+}
