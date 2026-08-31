@@ -59,6 +59,55 @@ prevBtn.addEventListener('click', () => {
 });
 
 // ==========================================
+// 2. LÓGICA DEL CARRUSEL INFINITO Y FLUIDO
+// ==========================================
+const track = document.getElementById('track');
+const slides = Array.from(track.children);
+const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById('prevBtn');
+let currentIndex = 0;
+
+function moveToSlide(index) {
+  track.style.transition = 'transform 0.4s ease-in-out';
+  track.style.transform = `translateX(-${index * 100}%)`;
+}
+
+// Botón Siguiente
+nextBtn.addEventListener('click', () => {
+  if (currentIndex >= slides.length - 1) return;
+  currentIndex++;
+  moveToSlide(currentIndex);
+});
+
+// Botón Anterior
+prevBtn.addEventListener('click', () => {
+  if (currentIndex <= 0) {
+    // Si está en la primera foto y da atrás, salta al clon final sin animación y luego retrocede
+    track.style.transition = 'none';
+    currentIndex = slides.length - 1;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Forzar renderizado e ir a la última foto real (foto 29)
+    setTimeout(() => {
+      currentIndex--;
+      moveToSlide(currentIndex);
+    }, 20);
+  } else {
+    currentIndex--;
+    moveToSlide(currentIndex);
+  }
+});
+
+// Reset invisible cuando llega al clon
+track.addEventListener('transitionend', () => {
+  if (slides[currentIndex].id === 'first-clone') {
+    track.style.transition = 'none'; // Quita la animación
+    currentIndex = 0; // Vuelve a la primera foto real
+    track.style.transform = `translateX(0%)`; // Reposiciona en 0s
+  }
+});
+
+// ==========================================
 // 3. APERTURA DE CARTA
 // ==========================================
 document.getElementById('btn-open-envelope').addEventListener('click', function() {
