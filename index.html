@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para mi Lu 💖</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <audio id="musicaFondo" loop>
+  <source src="audio/lu_fondo_song.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  <div class="bg-hearts">
+    <div class="heart h1"></div>
+    <div class="heart h2"></div>
+    <div class="heart h3"></div>
+    <div class="heart h4"></div>
+    <div class="heart h5"></div>
+  </div>
+
+  <section id="welcome-screen">
+    <div class="welcome-card">
+      <div class="heart-icon">💙</div>
+      <h1>Para mi fantástica eposha</h1>
+      <button id="btn-start">abrir</button>
+    </div>
+  </section>
+
+  <main id="main-content" class="hidden">
+    
+    <header>
+      <h1 class="fecha-titulo">El día en que el mundo se hizo más bonito</h1>
+      <h2 class="fecha-subtitulo">1 de septiembre</h2>
+    </header>
+
+    <section class="card carousel-card">
+      <div class="carousel-container">
+        <div class="carousel-track" id="track">
+          <div class="slide"><img src="img/foto1.jpg" alt="Foto 1"></div>
+          <div class="slide"><img src="img/foto2.jpg" alt="Foto 2"></div>
+          <div class="slide"><img src="img/foto3.jpg" alt="Foto 3"></div>
+          <div class="slide"><img src="img/foto4.jpg" alt="Foto 4"></div>
+          <div class="slide"><img src="img/foto5.jpg" alt="Foto 5"></div>
+          <div class="slide"><img src="img/foto6.jpg" alt="Foto 6"></div>
+          <div class="slide"><img src="img/foto7.jpeg" alt="Foto 7"></div>
+          <div class="slide"><img src="img/foto8.jpg" alt="Foto 8"></div>
+          <div class="slide"><img src="img/foto9.jpeg" alt="Foto 9"></div>
+          <div class="slide"><img src="img/foto10.jpg" alt="Foto 10"></div>
+          <div class="slide"><img src="img/foto11.jpg" alt="Foto 11"></div>
+          <div class="slide"><img src="img/foto12.jpg" alt="Foto 12"></div>
+          <div class="slide"><img src="img/foto13.jpg" alt="Foto 13"></div>
+          <div class="slide"><img src="img/foto14.jpg" alt="Foto 14"></div>
+          <div class="slide"><img src="img/foto15.jpg" alt="Foto 15"></div>
+          <div class="slide"><img src="img/foto16.jpg" alt="Foto 16"></div>
+          <div class="slide"><img src="img/foto17.jpg" alt="Foto 17"></div>
+          <div class="slide"><img src="img/foto18.jpeg" alt="Foto 18"></div>
+          <div class="slide"><img src="img/foto19.jpg" alt="Foto 19"></div>
+          <div class="slide"><img src="img/foto20.jpg" alt="Foto 20"></div>
+          <div class="slide"><img src="img/foto21.jpg" alt="Foto 21"></div>
+          <div class="slide"><img src="img/foto22.jpg" alt="Foto 22"></div>
+          <div class="slide"><img src="img/foto23.jpg" alt="Foto 23"></div>
+          <div class="slide"><img src="img/foto24.jpg" alt="Foto 24"></div>
+          <div class="slide"><img src="img/foto25.jpg" alt="Foto 25"></div>
+          <div class="slide"><img src="img/foto26.jpg" alt="Foto 26"></div>
+          <div class="slide"><img src="img/foto27.jpg" alt="Foto 27"></div>
+          <div class="slide"><img src="img/foto28.jpg" alt="Foto 28"></div>
+          <div class="slide"><img src="img/foto29.jpg" alt="Foto 29"></div>
+        </div>
+        <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
+        <button class="carousel-btn next" id="nextBtn">&#10095;</button>
+      </div>
+      <br>
+      <h3 class="fecha-subtitulo">"Diferentes lugares, distintas fechas, pero la misma sonrisa encantadora siempre. ¡Que vengan muchas aventuras más!</h3>
+    </section>
+
+    <section class="card envelope-section">
+      <div class="envelope" id="envelope">
+        <div class="envelope-front">
+          <button id="btn-open-envelope">PARA TÚ</button>
+        </div>
+        <div class="letter hidden" id="letter">
+          <h3>¡Feliz Cumpleaños!</h3>
+          <p>
+            Hoy es un día sumamente especial. Quiero desearte ante todo un año lleno de salud,  sonrisas, éxitos 
+            y momentos memorables 🙏🏼. Gracias por ser una persona tan increíble y por llenar cada 
+            día de tanta luz y alegría.
+          </p>
+          <button id="btn-celebrate">¡Te mereces lo mejor! ✨</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card final-section">
+      <h2 class="final-message">¡Feliz Cumpleaños, amor mío! Que disfrutes de este y todos los días! ✨</h2>
+      <br>
+      <img src="img/foto_final.jpeg" alt="MiLu" class="final-photo">      
+    </section>
+    <hr>
+    <footer>
+        <h4 class="copy_mensaje">Todo mi amor reservado para ti FEandE 💙✨</h4>
+        <h4 class="copy_mensaje">&copy; Hecho con ❤️ | 2020 — Siempre</h4>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
