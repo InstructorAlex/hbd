@@ -251,3 +251,67 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ==========================================
+   EFECTOS Y ANIMACIONES PARA BOTONES EN MÓVIL
+   ========================================== */
+
+/* 1. Animación de pulsación constante (Llama la atención sin tocar) */
+@keyframes pulse-btn {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(167, 139, 250, 0.4);
+  }
+  50% {
+    transform: scale(1.05); /* Se agranda sutilmente */
+    box-shadow: 0 6px 22px rgba(167, 139, 250, 0.8); /* El brillo se intensifica */
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(167, 139, 250, 0.4);
+  }
+}
+
+/* 2. Destello de luz que cruza el botón */
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
+}
+
+/* Aplicar la animación a los botones principales */
+#btn-start, 
+#btn-open-envelope, 
+#btn-celebrate {
+  position: relative;
+  overflow: hidden; /* Necesario para contener el brillo */
+  animation: pulse-btn 2s infinite ease-in-out; /* Pulsación infinita */
+}
+
+/* Capa del destello brillante */
+#btn-start::after, 
+#btn-open-envelope::after, 
+#btn-celebrate::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.4), 
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: shine 4s infinite;
+}
+
+/* 3. Feedback táctil inmediato al presionar con el dedo (Active State) */
+button:active, 
+.carousel-btn:active {
+  transform: scale(0.92) !important; /* Se hunde al tocar */
+  filter: brightness(1.2); /* Se ilumina al toque */
+  transition: transform 0.1s ease;
+}
