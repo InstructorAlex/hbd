@@ -407,3 +407,9 @@ button:active,
 }
 
 
+.love-container img,
+.gif-simulado img {
+  border-radius: 15px; /* Controla la curvatura de las esquinas */
+  box-shadow: 0 4px 15px rgba(131, 56, 236, 0.4); /* Resplandor lila alrededor de la foto */
+  object-fit: cover;
+}
